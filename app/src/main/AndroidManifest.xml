@@ -18,11 +18,7 @@
             android:parentActivityName=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".OrderChicagoActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OrderNYActivity"
+            android:name=".OrderPizzaActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity

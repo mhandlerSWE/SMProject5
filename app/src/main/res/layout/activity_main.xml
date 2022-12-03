@@ -23,44 +23,30 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_ny"
+        android:id="@+id/btn_pizza"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="100dp"
         android:background="#E1A120"
-        android:text="Order NY Pizza"
-        app:layout_constraintBottom_toTopOf="@+id/btn_chicago"
+        android:text="Order Pizza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/shopName" />
-
-    <Button
-        android:id="@+id/btn_chicago"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="100dp"
-        android:background="#E1A120"
-        android:text="Order Chicago Pizza"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ny" />
 
     <Button
         android:id="@+id/btn_current"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="100dp"
         android:background="#35A7C8"
         android:text="Current Order"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_chicago" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_pizza" />
 
     <Button
         android:id="@+id/btn_all"

@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderChicagoActivity">
+    tools:context=".OrderPizzaActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pizzaOptions"
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
 </android.support.constraint.ConstraintLayout>
