@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyViewHolder>{
     private final String selectedColor = "#CA5353";
-    private final String blankBackground = "000000";
+    private final String blankBackground = "#FFFFFF";
     private ArrayList<PizzaOption> typeList;
     private Context context;
     private int checkedPosition = -1;
@@ -33,9 +33,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull recyclerAdapter.MyViewHolder myViewHolder, int i) {
-        //myViewHolder.bind(typeList.get(i));
-        String name = typeList.get(i).getType();
-        myViewHolder.nameTxt.setText(name);
+        myViewHolder.bind(typeList.get(i));
+        //String name = typeList.get(i).getType();
+        //myViewHolder.nameTxt.setText(name);
     }
 
     @Override
@@ -50,14 +50,16 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
             super(itemView);
             nameTxt = itemView.findViewById(R.id.uName);
         }
-    /**
+
         void bind(final PizzaOption type) {
+            int pos = getAdapterPosition();
+
             // no items are selected
             if(checkedPosition == -1) {
                 nameTxt.setBackgroundColor(Color.parseColor(blankBackground));
             } else {
                 // an item is selected items is selected
-                if(checkedPosition == getAdapterPosition()) {
+                if(checkedPosition == pos) {
                     nameTxt.setBackgroundColor(Color.parseColor(selectedColor));
                 }
                 else {
@@ -76,12 +78,5 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                 }
             });
         }
-     **/
-    }
-    public PizzaOption getSelected() {
-        if(checkedPosition != -1) {
-            return typeList.get(checkedPosition);
-        }
-        return null;
     }
 }

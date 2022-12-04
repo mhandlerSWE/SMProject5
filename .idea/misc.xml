@@ -7,10 +7,11 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_order_chicago.xml" value="0.21693840579710144" />
         <entry key="app/src/main/res/layout/activity_order_ny.xml" value="0.21693840579710144" />
-        <entry key="app/src/main/res/layout/activity_order_pizza.xml" value="0.19882246376811594" />
+        <entry key="app/src/main/res/layout/activity_order_pizza.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_store_orders.xml" value="0.19882246376811594" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.649671052631579" />
         <entry key="app/src/main/res/layout/list_items.xml" value="0.225" />
+        <entry key="app/src/main/res/layout/list_pizza_types.xml" value="0.1" />
         <entry key="app/src/main/res/layout/row.xml" value="0.19882246376811594" />
       </map>
     </option>
