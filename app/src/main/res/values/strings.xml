@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">P5</string>
+    <string name="first_order_screen_title">Select Pizza Style and Flavor: </string>
 </resources>
