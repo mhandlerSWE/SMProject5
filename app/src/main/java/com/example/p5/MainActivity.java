@@ -14,10 +14,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private Button toNY, toChicago, toCurrent, toAll;
 
+    private StoreOrders storeOrders;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        storeOrders = new StoreOrders();
 
         toNY = (Button) findViewById(R.id.btn_pizza);
         toCurrent = (Button) findViewById(R.id.btn_current);
@@ -66,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
     public void openStoreOrdersView() {
         Intent intent = new Intent(this, StoreOrdersActivity.class);
         startActivity(intent);
+    }
+
+    public StoreOrders getStoreOrders(){
+        return storeOrders;
     }
 }

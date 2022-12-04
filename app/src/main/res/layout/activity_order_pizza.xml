@@ -27,6 +27,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="300dp"
+        android:onClick="changePic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +45,21 @@
         android:background="@color/selection_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizzaOptions"
-        app:srcCompat="@drawable/ru_pizza_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/pizzaOptions" />
+
+    <Button
+        android:id="@+id/Toppings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="206dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="46dp"
+        android:onClick="next"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pizzaOptions" />
+
 </android.support.constraint.ConstraintLayout>

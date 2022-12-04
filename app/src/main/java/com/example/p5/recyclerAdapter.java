@@ -19,9 +19,11 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     private ArrayList<PizzaOption> typeList;
     private Context context;
     private int checkedPosition = -1;
+    private OrderPizzaActivity parent;
 
-    public recyclerAdapter(ArrayList<PizzaOption> typeList) {
+    public recyclerAdapter(ArrayList<PizzaOption> typeList, OrderPizzaActivity parent) {
         this.typeList = typeList;
+        this.parent = parent;
     }
 
     @NonNull
@@ -74,9 +76,15 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                     if(checkedPosition != getAdapterPosition()) {
                         notifyItemChanged(checkedPosition);
                         checkedPosition = getAdapterPosition();
+                        parent.changePic(checkedPosition);
                     }
                 }
-            });
+            }
+            );
         }
+    }
+
+    public int getCheckedPosition(){
+        return this.checkedPosition;
     }
 }
