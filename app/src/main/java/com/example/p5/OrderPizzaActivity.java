@@ -34,13 +34,22 @@ public class OrderPizzaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         logo = (ImageView) findViewById(R.id.logo);
         logo.setImageResource(R.drawable.ru_pizza_logo);
-        //next.setEnabled(false);
+        next = (Button) findViewById(R.id.next);
+        next.setEnabled(false);
 
         // setting up RecyclerView
         recyclerView = findViewById(R.id.pizzaOptions);
         usersList = new ArrayList<>();
         setUserInfo();
         setAdapter();
+
+        // tells new screen to open when next button is clicked
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openSelectSizeView();
+            }
+        });
     }
 
     private void setAdapter() {
@@ -64,22 +73,15 @@ public class OrderPizzaActivity extends AppCompatActivity {
 
     public void changePic(int pos){
 
-        if (pos > 3){
+        if(pos > 3){
             pos = pos - 4;
-            logo.setImageResource(images[pos]);
         }
-        else{
-            logo.setImageResource(images[pos]);
-        }
+        logo.setImageResource(images[pos]);
         next.setEnabled(true);
     }
 
-    public void next(){
-        if(adapter.getCheckedPosition() == -1){
-            return;
-        }
-
-        Intent intent = new Intent(this, selectSizeActivity.class);
+    public void openSelectSizeView(){
+        Intent intent = new Intent(this, SelectSizeAndToppingsActivity.class);
         startActivity(intent);
     }
 

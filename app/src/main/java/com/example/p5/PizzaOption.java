@@ -8,7 +8,7 @@ public enum PizzaOption implements Serializable {
     CHICAGO_MEATZZA("Chicago Meatzza"),
     CHICAGO_BYO("Chicago Build Your Own"),
     NEW_YORK_DELUXE("New York Deluxe"),
-    NEW_YORK_BBQ("New York Chicken"),
+    NEW_YORK_BBQ("New York BBQ Chicken"),
     NEW_YORK_MEATZZA("New York Meatzza"),
     NEW_YORK_BYO("New York Build Your Own");
     private String type;
