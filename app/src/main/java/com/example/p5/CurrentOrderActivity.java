@@ -12,18 +12,20 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CurrentOrderActivity extends AppCompatActivity {
 
     private StoreOrders storeOrders;
-    public static Order currentOrder;
-    private String[] pizzas;
+    private Order currentOrder;
+    // private String[] pizzas;
+    SimpleAdapter arr;
+    ArrayList<HashMap<String, String>> pizzas = new ArrayList<>();
+    HashMap<String, String> item;
 
     private ListView orderListView;
 
     private Button placeOrder, clearOrder, removeSelected;
-
-    ArrayAdapter<String> arr;
 
 
     private boolean isSelected;
@@ -67,8 +69,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
         this.setUpPizzas();
 
         orderListView = findViewById(R.id.order);
-        arr = new ArrayAdapter<String>(this,
-                  android.support.constraint.R.layout.support_simple_spinner_dropdown_item, pizzas);
+        arr = new SimpleAdapter(this, pizzas, R.layout.multi_line_order,
+                new String[] { "line1"},
+                new int[] {R.id.pizzasInOrder});
+        //arr = new ArrayAdapter<String>(this,
+        //          android.support.constraint.R.layout.support_simple_spinner_dropdown_item, pizzas);
         orderListView.setAdapter(arr);
 
         orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,11 +117,11 @@ public class CurrentOrderActivity extends AppCompatActivity {
     }
 
     public void setUpPizzas(){
-        ArrayList<String> temp = currentOrder.returnAsList();
-        int size = temp.size();
-        pizzas = new String[size];
-        for (int i = 0; i < size; i++){
-            pizzas[i] = temp.get(i);
+        ArrayList<String> temp = this.currentOrder.returnAsList();
+        for(int i=0;i<temp.size();i++){
+            item = new HashMap<String,String>();
+            item.put( "line1", temp.get(i));
+            pizzas.add( item );
         }
     }
 
