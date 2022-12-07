@@ -20,10 +20,12 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     private Context context;
     private int checkedPosition = -1;
     private OrderPizzaActivity parent;
+    private Pizza currentPizza;
 
     public recyclerAdapter(ArrayList<PizzaOption> typeList, OrderPizzaActivity parent) {
         this.typeList = typeList;
         this.parent = parent;
+        currentPizza = parent.getCurrentPizza();
     }
 
     @NonNull
@@ -77,6 +79,9 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
                         notifyItemChanged(checkedPosition);
                         checkedPosition = getAdapterPosition();
                         parent.changePic(checkedPosition);
+                        PizzaOption type = typeList.get(checkedPosition);
+                        implementType(type);
+                        parent.setCurrentPizza(currentPizza);
                     }
                 }
             }
@@ -86,5 +91,41 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
 
     public int getCheckedPosition(){
         return this.checkedPosition;
+    }
+
+    public void implementType(PizzaOption type){
+        if (type.equals(PizzaOption.CHICAGO_DELUXE)){
+            PizzaFactory pizzaFactory = new ChicagoPizza();
+            this.currentPizza = pizzaFactory.createDeluxe();
+        }
+        else if (type.equals(PizzaOption.CHICAGO_BBQ)){
+            PizzaFactory pizzaFactory = new ChicagoPizza();
+            this.currentPizza = pizzaFactory.createBBQChicken();
+        }
+        else if (type.equals(PizzaOption.CHICAGO_MEATZZA)){
+            PizzaFactory pizzaFactory = new ChicagoPizza();
+            this.currentPizza = pizzaFactory.createMeatzza();
+        }
+        else if (type.equals(PizzaOption.CHICAGO_BYO)){
+            PizzaFactory pizzaFactory = new ChicagoPizza();
+            this.currentPizza = pizzaFactory.createBuildYourOwn();
+        }
+        else if (type.equals(PizzaOption.NEW_YORK_BBQ)){
+            PizzaFactory pizzaFactory = new NYPizza();
+            this.currentPizza = pizzaFactory.createBBQChicken();
+        }
+        else if (type.equals(PizzaOption.NEW_YORK_DELUXE)){
+            PizzaFactory pizzaFactory = new NYPizza();
+            this.currentPizza = pizzaFactory.createDeluxe();
+
+        }
+        else if (type.equals(PizzaOption.NEW_YORK_MEATZZA)){
+            PizzaFactory pizzaFactory = new NYPizza();
+            this.currentPizza = pizzaFactory.createMeatzza();
+        }
+        else if (type.equals(PizzaOption.NEW_YORK_BYO)){
+            PizzaFactory pizzaFactory = new NYPizza();
+            this.currentPizza = pizzaFactory.createBuildYourOwn();
+        }
     }
 }

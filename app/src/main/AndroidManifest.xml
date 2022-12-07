@@ -10,13 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.P5">
         <activity
-            android:name=".StoreOrdersActivity"
-            android:parentActivityName=".MainActivity"
+            android:name=".SelectSizeAndToppingsActivity"
+            android:parentActivityName=".OrderPizzaActivity"
             android:exported="false" />
         <activity
+            android:name=".StoreOrdersActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
+        <activity
             android:name=".CurrentOrderActivity"
-            android:parentActivityName=".MainActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".OrderPizzaActivity"
             android:exported="false"

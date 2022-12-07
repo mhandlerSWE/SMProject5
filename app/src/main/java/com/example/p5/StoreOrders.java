@@ -9,7 +9,7 @@ package com.example.p5;
  */
 import java.util.ArrayList;
 
-public class StoreOrders implements Customizable{
+public class StoreOrders implements Customizable {
     private ArrayList<Order> storeOrders;
     private int numOrders;
     private Order currentOrder;

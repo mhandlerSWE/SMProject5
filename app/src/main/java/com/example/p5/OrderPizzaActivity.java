@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class OrderPizzaActivity extends AppCompatActivity {
 
     private MainActivity parent;
 
+    private StoreOrders storeOrders;
     private Pizza currentPizza;
     private Order currentOrder;
 
@@ -34,13 +36,37 @@ public class OrderPizzaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         logo = (ImageView) findViewById(R.id.logo);
         logo.setImageResource(R.drawable.ru_pizza_logo);
-        //next.setEnabled(false);
+        next = (Button) findViewById(R.id.next);
+        next.setEnabled(false);
+
+        this.storeOrders = MainActivity.getStoreOrders();
+        this.currentOrder = this.storeOrders.getCurrentOrder();
+        //this.currentPizza = this.currentOrder.getCurrentPizza();
 
         // setting up RecyclerView
         recyclerView = findViewById(R.id.pizzaOptions);
         usersList = new ArrayList<>();
         setUserInfo();
         setAdapter();
+
+
+
+        // tells new screen to open when next button is clicked
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (currentPizza != null) {
+                    currentOrder.add(currentPizza);
+                    openSelectSizeView();}
+                else{
+                    String text = "Please select a type of pizza!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                }
+            }
+        });
     }
 
     private void setAdapter() {
@@ -64,92 +90,23 @@ public class OrderPizzaActivity extends AppCompatActivity {
 
     public void changePic(int pos){
 
-        if (pos > 3){
+        if(pos > 3){
             pos = pos - 4;
-            logo.setImageResource(images[pos]);
         }
-        else{
-            logo.setImageResource(images[pos]);
-        }
+        logo.setImageResource(images[pos]);
         next.setEnabled(true);
     }
 
-    public void next(){
-        if(adapter.getCheckedPosition() == -1){
-            return;
-        }
-
-        Intent intent = new Intent(this, selectSizeActivity.class);
+    public void openSelectSizeView(){
+        Intent intent = new Intent(this, SelectSizeAndToppingsActivity.class);
         startActivity(intent);
     }
 
-    /**
-     * create deluxe NY pizza
-     */
-    public void nyDeluxe(){
-        PizzaFactory pizzaFactory = new NYPizza();
-        this.currentPizza = pizzaFactory.createDeluxe();
+    public Pizza getCurrentPizza() {
+        return currentPizza;
     }
 
-    /**
-     * create bbq chicken NY pizza
-     */
-    public void nyBBQ(){
-        PizzaFactory pizzaFactory = new NYPizza();
-        this.currentPizza = pizzaFactory.createBBQChicken();
-
-    }
-
-    /**
-     * create NY meatzza
-     */
-    public void nyMeatzza(){
-        PizzaFactory pizzaFactory = new NYPizza();
-        this.currentPizza = pizzaFactory.createMeatzza();
-
-    }
-
-    /**
-     * create NY build your own
-     */
-    public void nyBuildYourOwn(){
-        PizzaFactory pizzaFactory = new NYPizza();
-        this.currentPizza = pizzaFactory.createBuildYourOwn();
-
-    }
-
-    /**
-     * create deluxe Chicago pizza
-     */
-    public void chiDeluxe(){
-        PizzaFactory pizzaFactory = new ChicagoPizza();
-        this.currentPizza = pizzaFactory.createDeluxe();
-    }
-
-    /**
-     * create bbq chicken Chicago pizza
-     */
-    public void chiBBQ(){
-        PizzaFactory pizzaFactory = new ChicagoPizza();
-        this.currentPizza = pizzaFactory.createBBQChicken();
-
-    }
-
-    /**
-     * create Chicago meatzza
-     */
-    public void chiMeatzza(){
-        PizzaFactory pizzaFactory = new ChicagoPizza();
-        this.currentPizza = pizzaFactory.createMeatzza();
-
-    }
-
-    /**
-     * create Chicago build your own
-     */
-    public void chiBuildYourOwn(){
-        PizzaFactory pizzaFactory = new ChicagoPizza();
-        this.currentPizza = pizzaFactory.createBuildYourOwn();
-
+    public void setCurrentPizza(Pizza pizza){
+        this.currentPizza = pizza;
     }
 }
