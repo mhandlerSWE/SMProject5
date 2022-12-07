@@ -1,11 +1,13 @@
 package com.example.p5;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -23,6 +25,8 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
 
     private ListView toppingSelect;
 
+    private Button placeOrderButton;
+
     private StoreOrders storeOrders;
 
     private Order currentOrder;
@@ -36,6 +40,8 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_size_and_toppings);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        placeOrderButton = (Button) findViewById(R.id.placeOrderButton);
 
         sizeSelect = findViewById(R.id.sizeSelect);
         sizeSelect.setOnItemSelectedListener(this);
@@ -53,20 +59,8 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
 
         this.storeOrders = MainActivity.getStoreOrders();
         this.currentOrder = this.storeOrders.getCurrentOrder();
-        this.currentPizza = this.currentOrder.getCurrentPizza();
-
-
-
-        numToppings = 0;
-        toppingSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String topping = (String) adapterView.getItemAtPosition(i);
-                    currentPizza.add(topping.toString());
-                    numToppings ++;
-                    Toast.makeText(getApplicationContext(), "Added " + topping + "to your pizza!", Toast.LENGTH_SHORT);
-                }
-            });
+        this.currentPizza = OrderPizzaActivity.currentPizza;// this.currentOrder.getCurrentPizza();
+        this.currentPizza.setSize(Size.SMALL);
 
         if(currentPizza instanceof Deluxe){
             this.selectDeluxe();
@@ -77,6 +71,45 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
         else if (currentPizza instanceof Meatzza){
             this.selectMeatzza();
         }
+        else {
+            toppingSelect.clearChoices();
+            toppingSelect.requestLayout();
+        }
+
+        placeOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                orderPizza();
+            }
+        });
+
+        numToppings = 0;
+        toppingSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(currentPizza instanceof  BuildYourOwn) {
+                        if(toppingSelect.isItemChecked(i) == false) {
+                            // toppingSelect.setItemChecked(i, true);
+                            String topping = (String) adapterView.getItemAtPosition(i);
+                            currentPizza.remove(topping.toString());
+                            numToppings--;
+                            return;
+                        }
+                        else if(numToppings == 7) {
+                            // don't process the selection and display a toast that there is a maximum of 7 toppings allowed
+                            toppingSelect.setItemChecked(i, false);
+                            Toast.makeText(getApplicationContext(), "Cannot have more than 7 toppings!", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            toppingSelect.setItemChecked(i, true);
+                            String topping = (String) adapterView.getItemAtPosition(i);
+                            currentPizza.add(topping.toString());
+                            numToppings++;
+                            Toast.makeText(getApplicationContext(), "Added " + topping + " to your pizza!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            });
 
     }
 
@@ -90,6 +123,15 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void orderPizza(){
+        currentOrder.add(currentPizza.duplicate());
+        currentPizza.reset();
+        Intent openMainActivity = new Intent(SelectSizeAndToppingsActivity.this, MainActivity.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(openMainActivity, 0);
+        Toast.makeText(getApplicationContext(), "Pizza added to order", Toast.LENGTH_SHORT).show();
     }
 
     private Size stringToSize(String s){

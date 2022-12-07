@@ -53,6 +53,7 @@ public class Order implements Customizable{
         else return false;
     }
 
+
     /**
      * Removes a Pizza from the order, implementing the Customizable interface
      * @param obj
@@ -213,6 +214,8 @@ public class Order implements Customizable{
      * @return
      */
     public int getNumOrders(){return this.orders;}
+
+    public int getNumItems(){return this.getNumItems();}
 
     /**
      * Returns the pizza at index 0

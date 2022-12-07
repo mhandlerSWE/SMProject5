@@ -26,7 +26,7 @@ public class OrderPizzaActivity extends AppCompatActivity {
     private MainActivity parent;
 
     private StoreOrders storeOrders;
-    private Pizza currentPizza;
+    public static Pizza currentPizza;
     private Order currentOrder;
 
     @Override
@@ -56,7 +56,7 @@ public class OrderPizzaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (currentPizza != null) {
-                    currentOrder.add(currentPizza);
+                    // currentOrder.add(currentPizza);
                     openSelectSizeView();}
                 else{
                     String text = "Please select a type of pizza!";

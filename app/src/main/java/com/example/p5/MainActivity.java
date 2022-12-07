@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         storeOrders = new StoreOrders();
+
 
         toNY = (Button) findViewById(R.id.btn_pizza);
         toCurrent = (Button) findViewById(R.id.btn_current);
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
 
     /**
      * Opens the NY Order View
@@ -75,4 +78,5 @@ public class MainActivity extends AppCompatActivity {
     public static StoreOrders getStoreOrders(){
         return storeOrders;
     }
+
 }
