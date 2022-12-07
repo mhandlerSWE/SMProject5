@@ -221,6 +221,8 @@ public class Order implements Customizable{
      * Returns the pizza at index 0
      * @return
      */
-    public Pizza getCurrentPizza(){return this.pizzas.get(0);}
+    public Pizza getCurrentPizza(){ return this.pizzas.get(0); }
+
+    public ArrayList<Pizza> getPizzas() { return this.pizzas; }
 }
 

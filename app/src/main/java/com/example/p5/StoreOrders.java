@@ -110,5 +110,19 @@ public class StoreOrders implements Customizable {
         return newOrder;
     }
 
+    public ArrayList<String> returnAsList() {
+        ArrayList<String> temp = new ArrayList<>();
+        for(Order order:storeOrders) {
+            String tString = "";
+            tString += "Order Number: " + order.getOrderNumber() + "\n";
+            tString += "Items: \n";
+            for(Pizza pizza: order.getPizzas()) {
+                tString += pizza.toString() + "\n";
+            }
+            temp.add(tString);
+        }
+        return temp;
+    }
+
 }
 

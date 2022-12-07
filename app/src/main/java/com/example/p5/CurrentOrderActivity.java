@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 public class CurrentOrderActivity extends AppCompatActivity {
 
     private StoreOrders storeOrders;
-    private Order currentOrder;
+    public static Order currentOrder;
     private String[] pizzas;
 
     private ListView orderListView;
@@ -67,7 +68,7 @@ public class CurrentOrderActivity extends AppCompatActivity {
 
         orderListView = findViewById(R.id.order);
         arr = new ArrayAdapter<String>(this,
-                    android.support.constraint.R.layout.support_simple_spinner_dropdown_item, pizzas);
+                  android.support.constraint.R.layout.support_simple_spinner_dropdown_item, pizzas);
         orderListView.setAdapter(arr);
 
         orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -27,7 +27,7 @@ public class OrderPizzaActivity extends AppCompatActivity {
 
     private StoreOrders storeOrders;
     public static Pizza currentPizza;
-    private Order currentOrder;
+    public static Order currentOrder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
