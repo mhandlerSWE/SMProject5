@@ -53,20 +53,7 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
 
         this.storeOrders = MainActivity.getStoreOrders();
         this.currentOrder = this.storeOrders.getCurrentOrder();
-        this.currentPizza = this.currentOrder.getCurrentPizza();
-
-
-
-        numToppings = 0;
-        toppingSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    String topping = (String) adapterView.getItemAtPosition(i);
-                    currentPizza.add(topping.toString());
-                    numToppings ++;
-                    Toast.makeText(getApplicationContext(), "Added " + topping + "to your pizza!", Toast.LENGTH_SHORT);
-                }
-            });
+        this.currentPizza = OrderPizzaActivity.currentPizza;// this.currentOrder.getCurrentPizza();
 
         if(currentPizza instanceof Deluxe){
             this.selectDeluxe();
@@ -77,6 +64,37 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
         else if (currentPizza instanceof Meatzza){
             this.selectMeatzza();
         }
+        else {
+            toppingSelect.clearChoices();
+            toppingSelect.requestLayout();
+        }
+
+        numToppings = 0;
+        toppingSelect.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    if(currentPizza instanceof  BuildYourOwn) {
+                        if(toppingSelect.isItemChecked(i) == false) {
+                            // toppingSelect.setItemChecked(i, true);
+                            String topping = (String) adapterView.getItemAtPosition(i);
+                            currentPizza.remove(topping.toString());
+                            numToppings--;
+                            return;
+                        }
+                        else if(numToppings == 7) {
+                            // don't process the selection and display a toast that there is a maximum of 7 toppings allowed
+                            toppingSelect.setItemChecked(i, false);
+                        }
+                        else {
+                            toppingSelect.setItemChecked(i, true);
+                            String topping = (String) adapterView.getItemAtPosition(i);
+                            currentPizza.add(topping.toString());
+                            numToppings++;
+                            Toast.makeText(getApplicationContext(), "Added " + topping + "to your pizza!", Toast.LENGTH_SHORT);
+                        }
+                    }
+                }
+            });
 
     }
 
