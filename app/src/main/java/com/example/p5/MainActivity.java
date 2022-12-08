@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private Button toNY, toChicago, toCurrent, toAll;
 
-    private static StoreOrders storeOrders;
+    public static StoreOrders storeOrders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

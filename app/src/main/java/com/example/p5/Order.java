@@ -9,6 +9,7 @@ package com.example.p5;
  */
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Order implements Customizable{
 
@@ -35,6 +36,20 @@ public class Order implements Customizable{
         orders++;
         this.placed = false;
         this.pizzas = new ArrayList<>();
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return this.orderNumber == order.getOrderNumber();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(main, pizzas, price, tax, total, orderNumber, placed, orders);
     }
 
     /**
@@ -221,6 +236,8 @@ public class Order implements Customizable{
      * Returns the pizza at index 0
      * @return
      */
-    public Pizza getCurrentPizza(){return this.pizzas.get(0);}
+    public Pizza getCurrentPizza(){ return this.pizzas.get(0); }
+
+    public ArrayList<Pizza> getPizzas() { return this.pizzas; }
 }
 
