@@ -8,6 +8,7 @@ package com.example.p5;
  ....
  */
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class StoreOrders implements Customizable {
     private ArrayList<Order> storeOrders;
@@ -65,6 +66,8 @@ public class StoreOrders implements Customizable {
     public boolean remove(Object obj) {
         if (obj instanceof Order){
             Order toBeRemoved = (Order)obj;
+            storeOrders.remove(toBeRemoved);
+            /*
             for(int i = 0; i < storeOrders.size(); i++){
                 if (toBeRemoved.equals(storeOrders.indexOf(i))){
                     storeOrders.remove(i);
@@ -72,8 +75,14 @@ public class StoreOrders implements Customizable {
                 }
 
             }
+             */
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(storeOrders, numOrders, currentOrder);
     }
 
     /**
@@ -113,6 +122,7 @@ public class StoreOrders implements Customizable {
     public ArrayList<String> returnAsList() {
         ArrayList<String> temp = new ArrayList<>();
         for(Order order:storeOrders) {
+            // if(order.equals(currentOrder)) return temp;
             String tString = "";
             tString += "Order Number: " + order.getOrderNumber() + "\n";
             tString += "Items: \n";

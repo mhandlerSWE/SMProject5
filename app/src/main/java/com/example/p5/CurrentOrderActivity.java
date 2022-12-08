@@ -72,8 +72,6 @@ public class CurrentOrderActivity extends AppCompatActivity {
         arr = new SimpleAdapter(this, pizzas, R.layout.multi_line_order,
                 new String[] { "line1"},
                 new int[] {R.id.pizzasInOrder});
-        //arr = new ArrayAdapter<String>(this,
-        //          android.support.constraint.R.layout.support_simple_spinner_dropdown_item, pizzas);
         orderListView.setAdapter(arr);
 
         orderListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
