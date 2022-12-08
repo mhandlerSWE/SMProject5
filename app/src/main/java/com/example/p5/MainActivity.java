@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        storeOrders = new StoreOrders();
+        storeOrders = StartAppActivity.storeOrders;
 
 
         toNY = (Button) findViewById(R.id.btn_pizza);

@@ -91,7 +91,7 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
                         if(toppingSelect.isItemChecked(i) == false) {
                             // toppingSelect.setItemChecked(i, true);
                             String topping = (String) adapterView.getItemAtPosition(i);
-                            currentPizza.remove(topping.toString());
+                            currentPizza.remove(stringToTopping(topping));
                             numToppings--;
                             return;
                         }
@@ -103,7 +103,7 @@ public class SelectSizeAndToppingsActivity extends AppCompatActivity implements 
                         else {
                             toppingSelect.setItemChecked(i, true);
                             String topping = (String) adapterView.getItemAtPosition(i);
-                            currentPizza.add(topping.toString());
+                            currentPizza.add(stringToTopping(topping));
                             numToppings++;
                             Toast.makeText(getApplicationContext(), "Added " + topping + " to your pizza!", Toast.LENGTH_SHORT).show();
                         }

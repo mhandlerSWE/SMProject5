@@ -1,6 +1,8 @@
 package com.example.p5;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,8 +13,11 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class StoreOrdersActivity extends AppCompatActivity {
 
@@ -38,6 +43,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
         // connecting ListView from xml file to Java variable
         allOrders = findViewById(R.id.allOrders);
         cancelOrderButton = (Button) findViewById(R.id.cancelOrder);
+        exportOrdersButton = (Button) findViewById(R.id.exportOrder);
 
         this.storeOrders = MainActivity.getStoreOrders();
 
@@ -66,6 +72,58 @@ public class StoreOrdersActivity extends AppCompatActivity {
                 removeOrder();
             }
         });
+
+        exportOrdersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                exportOrder();
+            }
+        });
+    }
+
+    private void exportOrder() {
+        if (this.storeOrders.getNumOrders() == 0){
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setTitle("Empty Order");
+            alert.setMessage("Nothing in current order. Please add something and try again.");
+            alert.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alert.create().show();
+        }
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+
+        try {
+            PrintWriter out = new PrintWriter("orders.txt");
+
+            for(int i = 0; i < this.storeOrders.getList().size(); ++i) {
+                Order o = (Order)this.storeOrders.getList().get(i);
+                out.println("\n\nOrder #" + (i + 1) + ":");
+                Iterator var5 = o.getList().iterator();
+
+                while(var5.hasNext()) {
+                    Pizza pizza = (Pizza)var5.next();
+                    out.println("\t" + pizza.toString() + "......." + df.format((o.getPrice())));
+                }
+
+                out.println("\nSubtotal:");
+                String var10001 = df.format(o.getPrice());
+                out.println("\t" + var10001);
+                out.println("\nTax:");
+                var10001 = df.format(o.getTax());
+                out.println("\t" + var10001);
+                out.println("\nTotal:");
+                var10001 = df.format(o.getTotal());
+                out.println("\t" + var10001);
+            }
+
+            out.close();
+        }
+        catch (Exception var7) {
+        }
     }
 
     private void removeOrder() {
@@ -86,7 +144,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
     private void setUpOrders() {
         ArrayList<String> temp = this.storeOrders.returnAsList();
         orders = new ArrayList<>();
-        for(int i=0;i<temp.size();i++){
+        for(int i=0;i<temp.size() - 1;i++){
             item = new HashMap<String,String>();
             item.put( "line1", temp.get(i));
             orders.add( item );
