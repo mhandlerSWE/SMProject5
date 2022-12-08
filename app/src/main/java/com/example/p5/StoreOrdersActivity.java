@@ -53,6 +53,7 @@ public class StoreOrdersActivity extends AppCompatActivity {
         allOrders.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                // small comment
                 allOrders.setItemChecked(i, true);
                 isSelected = true;
                 selectedOrder = i;
