@@ -13,7 +13,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="102dp"
         android:background="#090808"
-        android:text="RU Pizzeria"
+        android:text="@string/ru_pizzeria"
         android:textAlignment="center"
         android:textColor="#CA1919"
         android:textColorHighlight="#101010"
@@ -30,7 +30,7 @@
         android:layout_marginTop="120dp"
         android:layout_marginEnd="100dp"
         android:background="#E1A120"
-        android:text="Order Pizza"
+        android:text="@string/order_pizza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/shopName" />
@@ -43,7 +43,7 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="100dp"
         android:background="#35A7C8"
-        android:text="Current Order"
+        android:text="@string/current_orderMainActivity"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_pizza" />
@@ -56,7 +56,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="100dp"
         android:background="#35A7C8"
-        android:text="All Store Orders"
+        android:text="@string/all_store_orders"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_current" />

@@ -1,5 +1,12 @@
 package com.example.p5;
-
+/**
+ * Controller Class for Order Pizza Activity
+ * Initalizes and controls Order Pizza Activity, allows user to select type they want
+ ....
+ @author Max Handler
+ @author Luke Rivera
+ ....
+ */
 import android.content.Context;
 import android.content.Intent;
 import android.provider.ContactsContract;
@@ -29,6 +36,10 @@ public class OrderPizzaActivity extends AppCompatActivity {
     public static Pizza currentPizza;
     public static Order currentOrder;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,22 +52,17 @@ public class OrderPizzaActivity extends AppCompatActivity {
 
         this.storeOrders = MainActivity.getStoreOrders();
         this.currentOrder = this.storeOrders.getCurrentOrder();
-        //this.currentPizza = this.currentOrder.getCurrentPizza();
 
-        // setting up RecyclerView
         recyclerView = findViewById(R.id.pizzaOptions);
         usersList = new ArrayList<>();
         setUserInfo();
         setAdapter();
-
-
 
         // tells new screen to open when next button is clicked
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (currentPizza != null) {
-                    // currentOrder.add(currentPizza);
                     openSelectSizeView();}
                 else{
                     String text = "Please select a type of pizza!";
@@ -69,6 +75,9 @@ public class OrderPizzaActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * set adapter for recycler view
+     */
     private void setAdapter() {
         adapter = new recyclerAdapter(usersList, this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -77,6 +86,9 @@ public class OrderPizzaActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+    /**
+     * Set up types of pizzas available to the user
+     */
     public void setUserInfo() {
         usersList.add(PizzaOption.CHICAGO_DELUXE);
         usersList.add(PizzaOption.CHICAGO_BBQ);
@@ -88,6 +100,10 @@ public class OrderPizzaActivity extends AppCompatActivity {
         usersList.add(PizzaOption.NEW_YORK_BYO);
     }
 
+    /**
+     * change picture on display based on selected pizza
+     * @param pos
+     */
     public void changePic(int pos){
 
         if(pos > 3){
@@ -97,15 +113,26 @@ public class OrderPizzaActivity extends AppCompatActivity {
         next.setEnabled(true);
     }
 
+    /**
+     * Open activity to select sizes and toppings
+     */
     public void openSelectSizeView(){
         Intent intent = new Intent(this, SelectSizeAndToppingsActivity.class);
         startActivity(intent);
     }
 
+    /**
+     * get current pizza
+     * @return
+     */
     public Pizza getCurrentPizza() {
         return currentPizza;
     }
 
+    /**
+     * set current pizza
+     * @param pizza
+     */
     public void setCurrentPizza(Pizza pizza){
         this.currentPizza = pizza;
     }

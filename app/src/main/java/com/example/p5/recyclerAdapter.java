@@ -1,5 +1,12 @@
 package com.example.p5;
-
+/**
+ * Adapter class for recyclerView
+ * Allows Order Pizza Activity to function as desired
+ ....
+ @author Max Handler
+ @author Luke Rivera
+ ....
+ */
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -22,12 +29,23 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
     private OrderPizzaActivity parent;
     private Pizza currentPizza;
 
+    /**
+     * Constructor for RecyclerAdapter
+     * @param typeList
+     * @param parent
+     */
     public recyclerAdapter(ArrayList<PizzaOption> typeList, OrderPizzaActivity parent) {
         this.typeList = typeList;
         this.parent = parent;
         currentPizza = parent.getCurrentPizza();
     }
 
+    /**
+     * Initialize view
+     * @param parent
+     * @param i
+     * @return vieewholder containing pizza types
+     */
     @NonNull
     @Override
     public recyclerAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
@@ -35,6 +53,11 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         return new MyViewHolder(itemView);
     }
 
+    /**
+     * bind value at position i to viewHolder
+     * @param myViewHolder
+     * @param i
+     */
     @Override
     public void onBindViewHolder(@NonNull recyclerAdapter.MyViewHolder myViewHolder, int i) {
         myViewHolder.bind(typeList.get(i));
@@ -42,11 +65,18 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         //myViewHolder.nameTxt.setText(name);
     }
 
+    /**
+     * get number of items offered
+     * @return number of pizza types
+     */
     @Override
     public int getItemCount() {
         return typeList.size();
     }
 
+    /**
+     *
+     */
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView nameTxt;
 
@@ -89,10 +119,18 @@ public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.MyView
         }
     }
 
+    /**
+     * get checked position
+     * @return int of checked position
+     */
     public int getCheckedPosition(){
         return this.checkedPosition;
     }
 
+    /**
+     * Create new pizza based on type that user selects
+     * @param type
+     */
     public void implementType(PizzaOption type){
         if (type.equals(PizzaOption.CHICAGO_DELUXE)){
             PizzaFactory pizzaFactory = new ChicagoPizza();

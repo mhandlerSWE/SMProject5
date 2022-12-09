@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">P5</string>
     <string name="first_order_screen_title">Select Pizza Style and Flavor: </string>
+    <string name="current_order">Current Order:</string>
+    <string name="remove_selected_item">Remove Selected Item</string>
+    <string name="place_order">Place Order</string>
+    <string name="clear_order">Clear Order</string>
+    <string name="ru_pizzeria">RU Pizzeria</string>
+    <string name="order_pizza">Order Pizza</string>
+    <string name="current_orderMainActivity">Current Order</string>
+    <string name="all_store_orders">All Store Orders</string>
 </resources>

@@ -80,6 +80,10 @@ public class StoreOrders implements Customizable {
         return false;
     }
 
+    /**
+     * convert this store orders to hash
+     * @return hash of this store orders
+     */
     @Override
     public int hashCode() {
         return Objects.hash(storeOrders, numOrders, currentOrder);
@@ -91,6 +95,11 @@ public class StoreOrders implements Customizable {
      */
     public ArrayList<Order> getList(){return this.storeOrders;}
 
+    /**
+     * get order at index passed through
+     * @param index
+     * @return order at index
+     */
     public Order getOrder(int index){
         for(int i = 0; i < storeOrders.size(); i++){
             if (i == index){
@@ -119,6 +128,10 @@ public class StoreOrders implements Customizable {
         return newOrder;
     }
 
+    /**
+     * return store orders as a list
+     * @return
+     */
     public ArrayList<String> returnAsList() {
         ArrayList<String> temp = new ArrayList<>();
         for(Order order:storeOrders) {

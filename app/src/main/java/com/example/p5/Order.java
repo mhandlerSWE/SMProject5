@@ -32,13 +32,19 @@ public class Order implements Customizable{
      */
     public Order(int i){
         this.price = 0;
+        this.tax = 0;
+        this.total = 0;
         this.orderNumber = i;
         orders++;
         this.placed = false;
         this.pizzas = new ArrayList<>();
     }
 
-
+    /**
+     * Check if two orders are the same
+     * @param o
+     * @return true if the orders are equal, false if not
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,6 +53,10 @@ public class Order implements Customizable{
         return this.orderNumber == order.getOrderNumber();
     }
 
+    /**
+     * Convert order into hash
+     * @return hashCode of order
+     */
     @Override
     public int hashCode() {
         return Objects.hash(main, pizzas, price, tax, total, orderNumber, placed, orders);
@@ -153,14 +163,6 @@ public class Order implements Customizable{
     }
 
     /**
-     * Returns the status of whether an order has been placed yet or not
-     * @return
-     */
-    public boolean getStatus(){
-        return this.placed;
-    }
-
-    /**
      * Returns the price of an order
      * @return
      */
@@ -225,19 +227,9 @@ public class Order implements Customizable{
     }
 
     /**
-     * Returns the number of orders in store orders
-     * @return
+     * get pizzas in current order
+     * @return arraylist of pizzas in this order
      */
-    public int getNumOrders(){return this.orders;}
-
-    public int getNumItems(){return this.getNumItems();}
-
-    /**
-     * Returns the pizza at index 0
-     * @return
-     */
-    public Pizza getCurrentPizza(){ return this.pizzas.get(0); }
-
     public ArrayList<Pizza> getPizzas() { return this.pizzas; }
 }
 

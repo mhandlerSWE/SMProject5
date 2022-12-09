@@ -1,5 +1,12 @@
 package com.example.p5;
-
+/**
+ * Enum class for Pizza options
+ * Defines each type and assigns corresponding string to it
+ ....
+ @author Max Handler
+ @author Luke Rivera
+ ....
+ */
 import java.io.Serializable;
 
 public enum PizzaOption implements Serializable {
@@ -14,15 +21,20 @@ public enum PizzaOption implements Serializable {
     private String type;
     private boolean isChecked = false;
 
+    /**
+     * Constructor for PizzaOption
+     * @param type
+     */
     PizzaOption(String type) {
         this.type = type;
     }
 
+    /**
+     * Get string of current type
+     * @return string of current type
+     */
     public String getType() {
         return this.type;
     }
-    public boolean getIsChecked() { return isChecked; }
-    public void check() { this.isChecked = true; }
-    public void unCheck() { this.isChecked = false; }
 
 }

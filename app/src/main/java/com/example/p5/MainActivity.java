@@ -1,5 +1,12 @@
 package com.example.p5;
-
+/**
+ * Controller class for Main View Activity
+ * Initializes and controls main view
+ ....
+ @author Max Handler
+ @author Luke Rivera
+ ....
+ */
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -17,12 +24,16 @@ public class MainActivity extends AppCompatActivity {
 
     public static StoreOrders storeOrders;
 
+    /**
+     * Create activity
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        storeOrders = new StoreOrders();
+        storeOrders = StartAppActivity.storeOrders;
 
 
         toNY = (Button) findViewById(R.id.btn_pizza);
@@ -75,6 +86,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /**
+     * shares store orders
+     * @return instance of store orders for current run of app
+     */
     public static StoreOrders getStoreOrders(){
         return storeOrders;
     }
